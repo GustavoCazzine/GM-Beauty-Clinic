@@ -1,0 +1,234 @@
+/* =================================================================== */
+/* ==================== CAZZINE MASTER ENGINE v1.0 =================== */
+/* =================================================================== */
+
+:root {
+    /* --- PRESET: GM BEAUTY CLINIC (Rose Gold & Clean) --- */
+
+    /* 1. CORES & FUNDOS */
+    --page-bg: #faf7f5;            /* Nude Off-white (Clínica Limpa) */
+    --card-bg: #ffffff;            /* Branco Puro */
+    
+    --text-primary: #4a4a4a;       /* Cinza Chumbo (Títulos) */
+    --text-secondary: #7a7a7a;     /* Cinza Médio (Descrições) */
+    --text-muted: #b0b0b0;         /* Ícones e rodapé */
+    --accent-color: #d4a59a;       /* Rose Gold (Destaques) */
+
+    /* 2. DIMENSÕES & FORMAS */
+    --card-max-width: 400px;
+    --card-radius: 30px;
+    
+    --banner-height: 150px;
+    --banner-curve-height: 0px;    /* RETO: Passa mais seriedade médica */
+    
+    --avatar-size: 110px;
+    --avatar-border-width: 4px;    /* Borda branca grossa */
+    --avatar-outline-width: 0px;   /* Sem outline neon */
+
+    /* 3. BOTÕES (LINKS) */
+    --btn-radius: 16px;            /* Menos arredondado que o Dark */
+    --btn-height: 15px;
+    
+    /* Botão Padrão (Clean) */
+    --btn-bg: #ffffff;
+    --btn-text-color: #4a4a4a;
+    --btn-border: 1px solid #f0ebe9; /* Borda cinza muito suave */
+    
+    /* Hover */
+    --btn-hover-bg: #ffffff;
+    --btn-hover-text: #d4a59a;     /* Texto fica Rose Gold no hover */
+
+    /* 4. SOMBRAS & EFEITOS */
+    --shadow-card: 0 20px 40px rgba(212, 165, 154, 0.15); /* Sombra Rose Suave */
+    --shadow-avatar: 0 5px 20px rgba(0,0,0,0.1);
+    --shadow-btn: 0 4px 10px rgba(0, 0, 0, 0.03);
+    --shadow-btn-hover: 0 5px 15px rgba(212, 165, 154, 0.3); /* Glow Rose */
+
+    /* 5. TIPOGRAFIA */
+    --font-title: 'Montserrat', sans-serif;
+    --font-body: 'Inter', sans-serif;
+}
+
+/* =================================================================== */
+/* ============= MOTOR DE ESTILOS (NÃO PRECISA MEXER) ================ */
+/* =================================================================== */
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    font-family: var(--font-body);
+    color: var(--text-secondary);
+    background: var(--page-bg);
+    /* Textura sutil para o fundo clean */
+    background-image: radial-gradient(#e6cfc8 1px, transparent 1px);
+    background-size: 25px 25px;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+    overflow-x: hidden;
+}
+
+/* --- CARTÃO --- */
+.card-container {
+    width: 100%;
+    max-width: var(--card-max-width);
+    background-color: var(--card-bg);
+    border-radius: var(--card-radius);
+    overflow: hidden;
+    box-shadow: var(--shadow-card);
+    position: relative;
+    border: 1px solid #fff; /* Borda branca sutil */
+    z-index: 1;
+}
+
+/* --- BANNER --- */
+.profile-header {
+    position: relative;
+    height: var(--banner-height);
+    background-color: #eee;
+}
+.banner-image { width: 100%; height: 100%; }
+.banner-image img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+.profile-header::after {
+    content: ''; position: absolute;
+    bottom: -1px; left: -10%; width: 120%;
+    height: var(--banner-curve-height);
+    background-color: var(--card-bg);
+    border-radius: 50% 50% 0 0 / 100% 100% 0 0;
+    z-index: 2;
+}
+
+/* --- FOTO --- */
+.profile-picture-overlapping {
+    width: var(--avatar-size);
+    height: var(--avatar-size);
+    border-radius: 50%;
+    
+    border: var(--avatar-border-width) solid var(--card-bg); 
+    outline: var(--avatar-outline-width) solid var(--accent-color);
+    box-shadow: var(--shadow-avatar);
+    background-color: var(--card-bg);
+    
+    position: absolute;
+    bottom: calc(var(--avatar-size) / -2);
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 3;
+    
+    /* Ajuste para logo dentro do círculo */
+    display: flex; align-items: center; justify-content: center;
+    overflow: hidden;
+}
+.profile-picture-overlapping img {
+    width: 100%; height: 100%; object-fit: cover;
+}
+
+/* --- TEXTOS --- */
+.profile-info {
+    text-align: center;
+    margin-top: calc((var(--avatar-size) / 2) + 20px); 
+    padding: 0 20px;
+    position: relative;
+    z-index: 4;
+}
+.profile-name {
+    font-family: var(--font-title);
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 5px;
+    text-transform: uppercase; letter-spacing: 1px;
+}
+.profile-bio { font-size: 0.9rem; line-height: 1.4; }
+
+/* --- DIVISORES (ESTILO GM) --- */
+.divider {
+    text-align: center; margin: 25px 0 15px 0; position: relative;
+}
+.divider span {
+    background-color: var(--card-bg);
+    padding: 0 15px; font-size: 0.75rem;
+    color: var(--accent-color);
+    text-transform: uppercase; font-weight: 600; letter-spacing: 2px;
+    position: relative; z-index: 2;
+}
+.divider::before {
+    content: ''; position: absolute; top: 50%; left: 40px; right: 40px; height: 1px;
+    background-color: #eee; z-index: 1;
+}
+
+/* --- BOTÕES --- */
+.links-section {
+    padding: 0 25px 30px 25px;
+    display: flex; flex-direction: column; gap: 12px;
+}
+
+.link-button {
+    display: flex; align-items: center; justify-content: center;
+    padding: var(--btn-height);
+    border-radius: var(--btn-radius);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    
+    background: var(--btn-bg);
+    color: var(--btn-text-color);
+    border: var(--btn-border);
+    box-shadow: var(--shadow-btn);
+}
+
+.link-button:hover {
+    background: var(--btn-hover-bg);
+    color: var(--btn-hover-text);
+    box-shadow: var(--shadow-btn-hover);
+    border-color: var(--accent-color);
+    transform: translateY(-2px);
+}
+.link-button:active { transform: translateY(0) scale(0.98); }
+
+/* --- CLASSES ESPECIAIS (GM) --- */
+
+/* 1. Botão de Destaque (Recepção) */
+.btn-highlight {
+    background: linear-gradient(135deg, #d4a59a 0%, #c49286 100%);
+    color: #fff;
+    border: none;
+}
+.btn-highlight:hover {
+    background: linear-gradient(135deg, #c49286 0%, #d4a59a 100%);
+    color: #fff;
+    box-shadow: 0 5px 15px rgba(212, 165, 154, 0.4);
+}
+.btn-highlight i { margin-right: 10px; font-size: 1.2rem; }
+
+/* 2. Botão Profissional (Lista com Foto) */
+.btn-pro {
+    justify-content: flex-start; /* Alinha à esquerda */
+    padding: 10px 15px;
+    background-color: #fcfcfc; /* Levemente diferente do fundo branco */
+}
+.avatar-container {
+    width: 45px; height: 45px; margin-right: 15px; flex-shrink: 0;
+}
+.avatar-container img {
+    width: 100%; height: 100%; border-radius: 50%; object-fit: cover;
+    border: 1px solid var(--accent-color);
+}
+.text-container { display: flex; flex-direction: column; text-align: left; flex-grow: 1; }
+.pro-name { font-weight: 700; font-size: 0.9rem; color: var(--text-primary); }
+.pro-role { font-size: 0.75rem; color: var(--accent-color); margin-top: 1px; }
+.icon-arrow { margin-left: auto; font-size: 0.8rem; color: #ddd; }
+
+/* --- RODAPÉ --- */
+.footer-section { text-align: center; padding-bottom: 30px; }
+.social-icons { display: flex; justify-content: center; gap: 20px; margin-bottom: 20px; }
+.social-icons a { color: var(--accent-color); font-size: 1.4rem; transition: 0.3s; }
+.social-icons a:hover { color: var(--text-primary); transform: scale(1.1); }
+.credits { font-size: 0.75rem; color: var(--text-muted); opacity: 0.7; }
+.credits a { color: var(--text-muted); text-decoration: none; font-weight: bold; }
